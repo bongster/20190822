@@ -9,7 +9,7 @@ class Planet extends Model {
         'climate',
     ]
     constructor(properties) {
-        super();
+        super(properties);
         this.key = properties[Planet.primary];
         Planet.fields.map(field => {
             this[field] = properties[field];

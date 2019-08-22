@@ -10,7 +10,7 @@ class Vehicle extends Model {
     ]
 
     constructor(properties) {
-        super();
+        super(properties);
         this.key = properties[Vehicle.primary];
         Vehicle.fields.map(field => {
             this[field] = properties[field];

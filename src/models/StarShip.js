@@ -12,7 +12,7 @@ class StarShip extends Model {
         'manufacturer',
     ]
     constructor(properties) {
-        super();
+        super(properties);
         this.key = properties[StarShip.primary];
         StarShip.fields.map(field => {
             this[field] = properties[field];
