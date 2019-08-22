@@ -45,34 +45,34 @@ test('getPerson return response', async () => {
 test('getStartShip return response', async () => {
     const res = await getStarShips();
     expect(Array.isArray(res)).toBe(true);
-    await Promise.all(res.map(person => {
-        expect(person instanceof StarShip).toBe(true);
-        expect(person).toHaveProperty('model');
-        expect(person).toHaveProperty('startship_class');
-        expect(person).toHaveProperty('hyperdrive_rating');
-        expect(person).toHaveProperty('cost_in_credits');
-        expect(person).toHaveProperty('manufacturer');
+    await Promise.all(res.map(starship => {
+        expect(starship instanceof StarShip).toBe(true);
+        expect(starship).toHaveProperty('model');
+        expect(starship).toHaveProperty('starship_class');
+        expect(starship).toHaveProperty('hyperdrive_rating');
+        expect(starship).toHaveProperty('cost_in_credits');
+        expect(starship).toHaveProperty('manufacturer');
     }));
 });
 
 test('getPlanets return response', async () => {
     const res = await getPlanets();
     expect(Array.isArray(res)).toBe(true);
-    await Promise.all(res.map(person => {
-        expect(person instanceof Planet).toBe(true);
-        expect(person).toHaveProperty('name');
-        expect(person).toHaveProperty('population');
-        expect(person).toHaveProperty('climate');
+    await Promise.all(res.map(planet => {
+        expect(planet instanceof Planet).toBe(true);
+        expect(planet).toHaveProperty('name');
+        expect(planet).toHaveProperty('population');
+        expect(planet).toHaveProperty('climate');
     }));
 });
 
 test('getVehicles return response', async () => {
     const res = await getVehicles();
     expect(Array.isArray(res)).toBe(true);
-    await Promise.all(res.map(person => {
-        expect(person instanceof Vehicle).toBe(true);
-        expect(person).toHaveProperty('name');
-        expect(person).toHaveProperty('model');
-        expect(person).toHaveProperty('cost_in_credits');
+    await Promise.all(res.map(vehicle => {
+        expect(vehicle instanceof Vehicle).toBe(true);
+        expect(vehicle).toHaveProperty('name');
+        expect(vehicle).toHaveProperty('model');
+        expect(vehicle).toHaveProperty('cost_in_credits');
     }));
 });
