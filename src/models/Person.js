@@ -1,7 +1,14 @@
 class Person {
+    static fields = [
+        'name',
+        'gender',
+        'homeworld',
+        'vehicles',
+        'starships',
+    ]
     constructor(properties) {
-        Object.keys(properties).map(key => {
-            this[key] = properties[key];
+        Person.fields.map(field => {
+            this[field] = properties[field];
         });
     }
 }
