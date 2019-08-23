@@ -25,6 +25,22 @@ axios.get.mockImplementation((path) => {
             data = require('../__seed__/vehicles.data').default;
             break;
         default:
+            data = {
+                url: path,
+                name: 'test name',
+                gender: 'test gender',
+                homeworld: null,
+                vehicles: [],
+                starships: [],
+                model: 'test model',
+                starship_class: 'test',
+                hyperdrive_rating: 'test',
+                cost_in_credits: 'test',
+                manufacturer: 'test',
+                population: 'test',
+                climate: 'test',
+                cost_in_credits: 'test',
+            }
             break;
     };
     return {

@@ -1,0 +1,10 @@
+https://swapi.co/api/people/0$||$people$||${"key":"https://swapi.co/api/people/0","name":"test name 0","gender":"test gender 0"}$||$1567159202399
+https://swapi.co/api/people/1$||$people$||${"key":"https://swapi.co/api/people/1","name":"test name 1","gender":"test gender 1"}$||$1567159202399
+https://swapi.co/api/people/2$||$people$||${"key":"https://swapi.co/api/people/2","name":"test name 2","gender":"test gender 2"}$||$1567159202399
+https://swapi.co/api/people/3$||$people$||${"key":"https://swapi.co/api/people/3","name":"test name 3","gender":"test gender 3"}$||$1567159202399
+https://swapi.co/api/people/4$||$people$||${"key":"https://swapi.co/api/people/4","name":"test name 4","gender":"test gender 4"}$||$1567159202399
+https://swapi.co/api/people/5$||$people$||${"key":"https://swapi.co/api/people/5","name":"test name 5","gender":"test gender 5"}$||$1567159202399
+https://swapi.co/api/people/6$||$people$||${"key":"https://swapi.co/api/people/6","name":"test name 6","gender":"test gender 6"}$||$1567159202399
+https://swapi.co/api/people/7$||$people$||${"key":"https://swapi.co/api/people/7","name":"test name 7","gender":"test gender 7"}$||$1567159202399
+https://swapi.co/api/people/8$||$people$||${"key":"https://swapi.co/api/people/8","name":"test name 8","gender":"test gender 8"}$||$1567159202399
+https://swapi.co/api/people/9$||$people$||${"key":"https://swapi.co/api/people/9","name":"test name 9","gender":"test gender 9"}$||$1567159202399
