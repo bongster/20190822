@@ -9,7 +9,8 @@
     "test:people": "jest ./src/models/__tests__/Person.test.js",
     "test:planets": "jest ./src/models/__tests__/Planet.test.js",
     "test:vehicles": "jest ./src/models/__tests__/Vehicles.test.js",
-    "test:starships": "jest ./src/models/__tests__/Starships.test.js"
+    "test:starships": "jest ./src/models/__tests__/Starships.test.js",
+    "test:cache": "jest ./src/models/__tests__/Cache.test.js"
   },
   "repository": {
     "type": "git",
