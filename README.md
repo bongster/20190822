@@ -55,54 +55,54 @@ This project are built by Practice develop a cache and relationship database
 
 ## Models
 
-Cache: Cache model
+### Cache: Cache model
 
-    * functions
-        * get(key)
-            > get data from Cache
-        * set(key, data)
-            > set data to Cache Storage
-        * clear
-            > clear all storage
-        * all
-            > return all data in storage
+* functions
+    * get(key)
+    : get data from Cache
+    * set(key, data)
+    : set data to Cache Storage
+    * clear
+    : clear all storage
+    * all
+    : return all data in storage
 
-MemoryStorage: Memory based storage
+### MemoryStorage: Memory based storage
 
-FileStorage: File based Storage
+### FileStorage: File based Storage
 
-    * attributes
-        * path
-        * loaded
-        * delimiter
-        * writeStream
+* attributes
+    * path
+    * loaded
+    * delimiter
+    * writeStream
     
-    * functions
-        * load
-            > read data from file
+* functions
+    * load
+        > read data from file
 
-Model
+### Model
 
-    * functions
-        * getItems
-            > return JSON list from API or cache
-        * getItem
-            > return JSON object from API or cache
-        * hasMany
-            > 1: N relationship function
-        * belongTo
-            > N: 1 relationship function
-        * associated
-            > relationships are declared function
-        * build
-            > return model instance
-    * attributes
-        * primary
-            > model primary key
-        * model_name
-            > api path name related API
-        * fields
-            > included fields in model
+* functions
+    * getItems
+    : return JSON list from API or cache
+    * getItem
+    : return JSON object from API or cache
+    * hasMany
+    : 1: N relationship function
+    * belongTo
+    : N: 1 relationship function
+    * associated
+    : relationships are declared function
+    * build
+    : return model instance
+* attributes
+    * primary
+    : model primary key
+    * model_name
+    : api path name related API
+    * fields
+    : included fields in model
 
 ## ThirdParty
 
