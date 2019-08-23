@@ -15,6 +15,22 @@ class Planet extends Model {
             this[field] = properties[field];
         });
     }
+
+    associated() {
+
+    };
+
+    static build(properties) {
+        const me = new Person();
+        me.key = properties[Planet.primary];
+        Planet.fields.map(field => {
+            me[field] = properties[field];
+        });
+
+        me.associated();
+
+        return me;
+    }
 }
 
 export default Planet;

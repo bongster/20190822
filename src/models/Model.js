@@ -61,7 +61,7 @@ class Model extends Cache {
         const res = await axios.get(url);
 
         return res.data.results.map(properties => {
-            const c = new this(properties);
+            const c = this.build(properties);
             this.cachedData[this.model_name].add(c);
             this.hashTable[c.key] = c;
             return c;
@@ -74,8 +74,8 @@ class Model extends Cache {
             return cacheData;
         }
         const res = await axios.get(url);
-        const item = new this(res.data);
-        this.cachedData[this.model_name].add(c);
+        const item = this.build(res.data);
+        this.cachedData[this.model_name].add(item);
         this.hashTable[item.key] = item;
         return res.data;
     }
