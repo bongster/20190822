@@ -1,5 +1,4 @@
 import Model from './Model';
-import models from '../models';
 import Planet from './Planet';
 import StarShip from './StarShip';
 import Vehicle from './Vehicle';

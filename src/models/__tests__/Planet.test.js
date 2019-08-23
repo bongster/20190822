@@ -1,9 +1,6 @@
 import axios from 'axios';
-import { getPerson, getStarShips, getPlanets, getVehicles } from '../../models';
-import Person from '../Person';
+import { getPlanets } from '../../models';
 import Planet from '../Planet';
-import StarShip from '../StarShip';
-import Cache from '../Cache';
 
 jest.mock('axios');
 
