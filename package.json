@@ -4,7 +4,9 @@
   "description": "for something",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "node dist/index.js",
+    "build": "babel src -d dist",
+    "dev": "nodemon ./src/index.js --exec babel-node --ignore node_modules",
     "test": "jest src",
     "test:people": "jest ./src/models/__tests__/Person.test.js",
     "test:planets": "jest ./src/models/__tests__/Planet.test.js",
@@ -23,11 +25,14 @@
   },
   "homepage": "https://github.com/bongster/20190822#readme",
   "devDependencies": {
+    "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
+    "@babel/node": "^7.5.5",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "babel-jest": "^24.9.0",
-    "jest": "^24.9.0"
+    "jest": "^24.9.0",
+    "nodemon": "^1.19.1"
   },
   "dependencies": {
     "axios": "^0.19.0"

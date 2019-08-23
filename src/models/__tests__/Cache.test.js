@@ -8,5 +8,4 @@ test('Cache MemoryStorage working', async () => {
 test('Cache FileStorage workout', async () => {
     const cache = new Cache(new FileStorage());
     const storage = await cache.storage.load();
-    console.log(storage);
 });
