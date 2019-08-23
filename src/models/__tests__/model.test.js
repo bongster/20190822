@@ -83,7 +83,9 @@ test('getVehicles from cache and return searched data', async () => {
     await getVehicles();
     expect(axios.get.mock.calls.length).toBe(callCount + 1);
     // TODO: this data from cache so don't call axios.get function
-    const res = await getVehicles('Sand Crawler');
+    const name = 'Sand Crawler';
+    const res = await getVehicles(name);
     expect(axios.get.mock.calls.length).toBe(callCount + 1);
     expect(res).toHaveLength(1);
+    expect(res[0].name).toBe(name);
 });
