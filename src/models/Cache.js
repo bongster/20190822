@@ -15,7 +15,6 @@ export class FileStorage {
 
     load() {
         return new Promise((resolve, reject) => {
-            console.log(this.loaded);
             if (this.loaded) {
                 return resolve();
             } else {
@@ -81,13 +80,11 @@ export class Cache {
 
     async get(key) {
         const res = await this.storage.get(key);
-        console.log(`cached data: ${key}`);
         return res;
     }
 
     async set(key, data) {
         await this.storage.set(key, data);
-        console.log(`saved data: ${key}`);
     }
 
     async clear() {

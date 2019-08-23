@@ -16,16 +16,26 @@ This project are built by Practice develop a cache and relationship database
     $ yarn install
 ```
 
-## How to Run
+## How to Build
 
 ```
-    $ npm start
+    $ yarn install
+    $ yarn run build
+    $ yarn start
+```
+
+## HOw to Develop
+
+```
+    $ yarn install
+    $ yarn run dev
 ```
 
 ## How to Test
 
 ```
-    $ npm test
+    $ yarn install
+    $ yarn test
 ```
 
 ## Features

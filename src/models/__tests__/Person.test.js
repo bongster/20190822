@@ -91,9 +91,4 @@ test('getPerson return associated hasMany', async () => {
         expect(starship).toHaveProperty('cost_in_credits');
         expect(starship).toHaveProperty('manufacturer');
     }));
-    // const caches = Cache.all();
-    // await Promise.all(Object.keys(caches).map(key => {
-    //     console.log(`key: ${key}`);
-    //     console.log(`value: ${caches[key]}`);
-    // }));
 });
