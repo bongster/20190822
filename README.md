@@ -12,30 +12,30 @@ This project are built by Practice develop a cache and relationship database
 ## How to Install
 
 ```
-    $ cd ${project}
-    $ yarn install
+$ cd ${project}
+$ yarn install
 ```
 
 ## How to Build
 
 ```
-    $ yarn install
-    $ yarn run build
-    $ yarn start
+$ yarn install
+$ yarn run build
+$ yarn start
 ```
 
 ## How to Develop
 
 ```
-    $ yarn install
-    $ yarn run dev
+$ yarn install
+$ yarn run dev
 ```
 
 ## How to Test
 
 ```
-    $ yarn install
-    $ yarn test
+$ yarn install
+$ yarn test
 ```
 
 ## Features
