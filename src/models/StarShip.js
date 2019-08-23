@@ -11,12 +11,15 @@ class StarShip extends Model {
         'cost_in_credits',
         'manufacturer',
     ]
-    constructor(properties) {
-        super(properties);
-        this.key = properties[StarShip.primary];
+
+    static async build(properties) {
+        const me = new StarShip();
+        me.key = properties[StarShip.primary];
         StarShip.fields.map(field => {
-            this[field] = properties[field];
+            me[field] = properties[field];
         });
+
+        return me;
     }
 }
 

@@ -6,7 +6,10 @@
   "scripts": {
     "start": "node src/index.js",
     "test": "jest src",
-    "test:people": "jest ./src/models/__tests__/Person.test.js"
+    "test:people": "jest ./src/models/__tests__/Person.test.js",
+    "test:planets": "jest ./src/models/__tests__/Planet.test.js",
+    "test:vehicles": "jest ./src/models/__tests__/Vehicles.test.js",
+    "test:starships": "jest ./src/models/__tests__/Starships.test.js"
   },
   "repository": {
     "type": "git",

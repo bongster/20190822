@@ -1,9 +1,6 @@
 import axios from 'axios';
-import { getPerson, getStarShips, getPlanets, getVehicles } from '../../models';
-import Person from '../Person';
-import Planet from '../Planet';
+import { getStarShips } from '../../models';
 import StarShip from '../StarShip';
-import Cache from '../Cache';
 
 jest.mock('axios');
 
@@ -48,53 +45,32 @@ axios.get.mockImplementation((path) => {
     };
 });
 
-test('getPerson return response', async () => {
-    const res = await getPerson();
-    expect(Array.isArray(res)).toBe(true);
-    await Promise.all(res.map(person => {
-        expect(person instanceof Person).toBe(true);
-        expect(person).toHaveProperty('name');
-        expect(person).toHaveProperty('gender');
-    }));
-});
-
-test('getPerson:name return filtered response', async () => {
-    const name = 'Luke Skywalker';
-    const res = await getPerson('Luke Skywalker');
-    expect(Array.isArray(res)).toBe(true);
-    expect(res.length).toEqual(1);
-    const person = res[0];
-    expect(person.name).toBe(name);
-});
-
-test('getPerson return associated belongsTo', async () => {
-    const name = 'Luke Skywalker';
-    const res = await getPerson(name);
-    expect(Array.isArray(res)).toBe(true);
-    expect(res.length).toEqual(1);
-    const person = res[0];
-    expect(person.homeworld instanceof Planet).toBe(true);
-});
-
-test('getPerson return associated hasMany', async () => {
-    const name = 'Luke Skywalker';
-    const res = await getPerson(name);
-    expect(Array.isArray(res)).toBe(true);
-    expect(res.length).toEqual(1);
-    const person = res[0];
-    expect(Array.isArray(person.starships)).toBe(true);
-    const { starships } = person;
+test('getStarShips return response', async () => {
+    const starships = await getStarShips();
+    expect(Array.isArray(starships)).toBe(true);
     await Promise.all(starships.map(starship => {
         expect(starship instanceof StarShip).toBe(true);
+        expect(starship).toHaveProperty('name');
         expect(starship).toHaveProperty('model');
         expect(starship).toHaveProperty('starship_class');
         expect(starship).toHaveProperty('hyperdrive_rating');
         expect(starship).toHaveProperty('cost_in_credits');
         expect(starship).toHaveProperty('manufacturer');
+
+        expect(starship.name).not.toBeNull();
+        expect(starship.model).not.toBeNull();
+        expect(starship.starship_class).not.toBeNull();
+        expect(starship.hyperdrive_rating).not.toBeNull();
+        expect(starship.cost_in_credits).not.toBeNull();
+        expect(starship.manufacturer).not.toBeNull();
     }));
-    // const caches = Cache.all();
-    // await Promise.all(Object.keys(caches).map(key => {
-    //     console.log(`key: ${key}`);
-    //     console.log(`value: ${caches[key]}`);
-    // }));
+});
+
+test('getStarShips:name return filtered response', async () => {
+    const name = 'Executor';
+    const starships = await getStarShips(name);
+    expect(Array.isArray(starships)).toBe(true);
+    expect(starships.length).toEqual(1);
+    const starship = starships[0];
+    expect(starship.name).toBe(name);
 });

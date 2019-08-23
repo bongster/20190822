@@ -1,6 +1,8 @@
 import Model from './Model';
 import models from '../models';
 import Planet from './Planet';
+import StarShip from './StarShip';
+import Vehicle from './Vehicle';
 
 class Person extends Model {
     static primary = 'url';
@@ -13,41 +15,45 @@ class Person extends Model {
         'starships',
     ]
 
-    static hasMany = [
-        'vehicles',
-        'starships',
-    ]
-
     constructor(properties) {
         super(properties);
     }
 
-    static hasMany(ForeignModel, options) {
+    async hasMany(ForeignModel, options) {
         const { key } = options;
-        this[key] = this[key].map(Pk => {
-            return ForeignModel.getItem(Pk);
-        });
+        this[key] = await Promise.all(this[key].map(async Pk => {
+            return await ForeignModel.getItem(Pk);
+        }));
     }
 
-    static belongsTo(ForeignModel, options) {
+    async belongsTo(ForeignModel, options) {
         const { key } = options;
-        this[key] = ForeignModel.getItem(key);
+        const relatedData = await ForeignModel.getItem(this[key]);
+        this[key] = relatedData;
     }
 
-    associated() {
-        Person.belongsTo(Planet, {
+    async associated() {
+        await this.belongsTo(Planet, {
             key: 'homeworld',
         });
+
+        await this.hasMany(StarShip, {
+            key: 'starships',
+        });
+
+        await this.hasMany(Vehicle, {
+            key: 'vehicles',
+        });
     }
 
-    static build(properties) {
+    static async build(properties) {
         const me = new Person();
         me.key = properties[Person.primary];
         Person.fields.map(field => {
             me[field] = properties[field];
         });
 
-        me.associated();
+        await me.associated();
 
         return me;
     }

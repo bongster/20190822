@@ -1,4 +1,4 @@
-import Model from "./Model";
+import Model from './Model';
 
 class Planet extends Model {
     static primary = 'url'
@@ -8,26 +8,17 @@ class Planet extends Model {
         'population',
         'climate',
     ]
+
     constructor(properties) {
         super(properties);
-        this.key = properties[Planet.primary];
-        Planet.fields.map(field => {
-            this[field] = properties[field];
-        });
     }
 
-    associated() {
-
-    };
-
     static build(properties) {
-        const me = new Person();
+        const me = new Planet();
         me.key = properties[Planet.primary];
         Planet.fields.map(field => {
             me[field] = properties[field];
         });
-
-        me.associated();
 
         return me;
     }
