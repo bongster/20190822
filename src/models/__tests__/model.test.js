@@ -76,3 +76,16 @@ test('getVehicles return response', async () => {
         expect(vehicle).toHaveProperty('cost_in_credits');
     }));
 });
+
+test('getVehicles from cache and return searched data', async () => {
+    const callCount = axios.get.mock.calls.length;
+    Vehicle.reset();
+    await getVehicles();
+    expect(axios.get.mock.calls.length).toBe(callCount + 1);
+    // TODO: this data from cache so don't call axios.get function
+    const name = 'Sand Crawler';
+    const res = await getVehicles(name);
+    expect(axios.get.mock.calls.length).toBe(callCount + 1);
+    expect(res).toHaveLength(1);
+    expect(res[0].name).toBe(name);
+});
