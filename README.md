@@ -55,9 +55,7 @@ This project are built by Practice develop a cache and relationship database
 
 ## Models
 
-* Cache
-
-Cache model
+Cache: Cache model
 
     * functions
         * get(key)
@@ -69,13 +67,9 @@ Cache model
         * all
             > return all data in storage
 
-* MemoryStorage
+MemoryStorage: Memory based storage
 
-Memory based storage
-
-* FileStorage
-
-File based Storage
+FileStorage: File based Storage
 
     * attributes
         * path
@@ -87,7 +81,8 @@ File based Storage
         * load
             > read data from file
 
-* Model
+Model
+
     * functions
         * getItems
             > return JSON list from API or cache
