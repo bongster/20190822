@@ -75,7 +75,7 @@ class Model extends Cache {
         }
         const res = await axios.get(url);
         const item = new this(res.data);
-        this.cachedData[this.model_name].add(c);
+        this.cachedData[this.model_name].add(item);
         this.hashTable[item.key] = item;
         return res.data;
     }
