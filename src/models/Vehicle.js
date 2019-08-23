@@ -9,12 +9,14 @@ class Vehicle extends Model {
         'cost_in_credits',
     ]
 
-    constructor(properties) {
-        super(properties);
-        this.key = properties[Vehicle.primary];
+    static async build(properties) {
+        const me = new Vehicle();
+        me.key = properties[Vehicle.primary];
         Vehicle.fields.map(field => {
-            this[field] = properties[field];
+            me[field] = properties[field];
         });
+
+        return me;
     }
 }
 
