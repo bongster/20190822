@@ -57,7 +57,7 @@ This project are built by Practice develop a cache and relationship database
 
 ### Cache: Cache model
 
-* functions
+* **FUNCTIONS**
     * get(key)
     : get data from Cache
     * set(key, data)
@@ -71,19 +71,19 @@ This project are built by Practice develop a cache and relationship database
 
 ### FileStorage: File based Storage
 
-* attributes
+* **ATTRIBUTES**
     * path
     * loaded
     * delimiter
     * writeStream
     
-* functions
+* **FUNCTIONS**
     * load
-        > read data from file
+    : read data from file
 
 ### Model
 
-* functions
+* **FUNCTIONS**
     * getItems
     : return JSON list from API or cache
     * getItem
@@ -96,7 +96,7 @@ This project are built by Practice develop a cache and relationship database
     : relationships are declared function
     * build
     : return model instance
-* attributes
+* **ATTRIBUTES**
     * primary
     : model primary key
     * model_name
