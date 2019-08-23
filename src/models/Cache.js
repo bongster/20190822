@@ -24,7 +24,7 @@ export class FileStorage {
                     return Promise.all(data.split('\n').filter(d => d).map(line => {
                         const [key, jsonData, expireDateTimeStamp] = line.split(this.delimiter);
                         if (currentDateTimeStamp < parseInt(expireDateTimeStamp)) {
-                            this.storage[key] = JSON.parse(jsonData);
+                            this.storage[key] = jsonData;
                         }
                         this.loaded = true;
                     })).then(() => resolve(this.storage), reject);
@@ -50,7 +50,8 @@ export class FileStorage {
         this.storage[key] = data;
     }
 
-    clear() {
+    async clear() {
+        await this.load();
         this.storage = {};
     }
 }
@@ -68,7 +69,7 @@ export class MemoryStorage {
         this.storage[key] = data;
     }
 
-    clear() {
+    async clear() {
         this.storage = {};
     }
 }

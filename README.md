@@ -52,6 +52,22 @@ This project are built by Practice develop a cache and relationship database
         * all
             > return all data in storage
 
+* MemoryStorage
+    > Memory based storage
+
+* FileStorage
+    > File based Storage
+
+    * attributes
+        * path
+        * loaded
+        * delimiter
+        * writeStream
+    
+    * functions
+        * load
+            > read data from file
+
 * Model
     * functions
         * getItems
