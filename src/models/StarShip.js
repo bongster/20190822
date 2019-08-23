@@ -4,19 +4,23 @@ class StarShip extends Model {
     static primary = 'url'
     static model_name = 'starships'
     static fields = [
-        'name', // Key
-        'model',
-        'starship_class',
-        'hyperdrive_rating',
-        'cost_in_credits',
-        'manufacturer',
+        {
+            key: 'name',
+        }, {
+            key: 'model',
+        }, {
+            key: 'starship_class',
+        }, {
+            key: 'hyperdrive_rating',
+        }, {
+            key: 'cost_in_credits',
+        }, {
+            key: 'manufacturer',
+        }
     ]
-    constructor(properties) {
+    constructor(properties, targetClass=StarShip) {
         super(properties);
-        this.key = properties[StarShip.primary];
-        StarShip.fields.map(field => {
-            this[field] = properties[field];
-        });
+        this.build(targetClass, properties);
     }
 }
 

@@ -42,6 +42,20 @@ test('getPerson return response', async () => {
     }));
 });
 
+test('getPerson return related model', async () => {
+    const res = await getPerson();
+    expect(Array.isArray(res)).toBe(true);
+    await Promise.all(res.map(person => {
+        expect(person instanceof Person).toBe(true);
+        expect(person).toHaveProperty('name');
+        expect(person).toHaveProperty('gender');
+        expect(person).toHaveProperty('starships');
+        person.starships.forEach(startship => {
+            expect(startship instanceof StarShip).toBe(true);
+        });
+    }));
+});
+
 test('getStartShip return response', async () => {
     const res = await getStarShips();
     expect(Array.isArray(res)).toBe(true);

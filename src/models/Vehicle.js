@@ -4,17 +4,18 @@ class Vehicle extends Model {
     static primary = 'url'
     static model_name = 'vehicles'
     static fields = [
-        'name', // Key
-        'model',
-        'cost_in_credits',
+        {
+            key: 'name',
+        }, {
+            key: 'model',
+        }, {
+            key: 'cost_in_credits',
+        }
     ]
 
-    constructor(properties) {
+    constructor(properties, targetClass=Vehicle) {
         super(properties);
-        this.key = properties[Vehicle.primary];
-        Vehicle.fields.map(field => {
-            this[field] = properties[field];
-        });
+        this.build(targetClass, properties);
     }
 }
 

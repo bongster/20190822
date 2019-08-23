@@ -14,7 +14,7 @@ class Cache {
         }
     }
 
-    static init(force=false) {
+    static init(force = false) {
         this.cachedData = this.cachedData || {};
         if (force) {
             this.cachedData[this.model_name] = new Set();
@@ -50,8 +50,23 @@ class Cache {
 }
 
 class Model extends Cache {
+    async buildHasMany (model, list) {
+        return await Promise.all(list.map(properties => new model(properties)));
+    }
+
+    async buildBelongsto(model, properties) {
+        return await new model(properties);
+    }
+
+    build(targetClass, properties) {
+        this.key = properties[targetClass.primary];
+        targetClass.fields.map(({ key, model, hasMany, belongsTo }) => {
+            this[key] = properties[key];
+        });
+    }
+
     static async getItems(param) {
-        const data =super.getItems(param);
+        const data = super.getItems(param);
         if (data.length) {
             console.log(`${this.model_name} data got from cache`);
             return data;
@@ -61,10 +76,10 @@ class Model extends Cache {
         const res = await axios.get(url);
 
         return res.data.results.map(properties => {
-            const c = new this(properties);
-            this.cachedData[this.model_name].add(c);
-            this.hashTable[c.key] = c;
-            return c;
+            const item = new this(properties);
+            this.cachedData[this.model_name].add(item);
+            this.hashTable[item.key] = item;
+            return item;
         });
     }
 
@@ -75,7 +90,7 @@ class Model extends Cache {
         }
         const res = await axios.get(url);
         const item = new this(res.data);
-        this.cachedData[this.model_name].add(c);
+        this.cachedData[this.model_name].add(item);
         this.hashTable[item.key] = item;
         return res.data;
     }
