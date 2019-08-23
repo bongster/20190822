@@ -24,4 +24,4 @@ export default {
     StarShip: StarShip,
     Planet: Planet,
     Vehicle: Vehicle,
-}
+};
