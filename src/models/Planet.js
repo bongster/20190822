@@ -12,9 +12,25 @@ class Planet extends Model {
             key: 'climate',
         }
     ]
+
     constructor(properties, targetClass=Planet) {
         super(properties);
-        this.build(targetClass, properties);
+    }
+
+    static async build(properties, key=null) {
+        const c = new Planet(properties);
+        c.key = key || properties[Planet.primary];
+
+        let fieldData = properties;
+        if (!properties || !Object.keys(properties).length) {
+            fieldData = await this.getItem(c.key);
+        }
+
+        Planet.fields.map(({ key, model, hasMany, belongsTo }) => {
+            c[key] = fieldData[key];
+        });
+
+        return Promise.resolve(c);
     }
 }
 

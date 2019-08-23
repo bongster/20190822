@@ -18,7 +18,7 @@ class Person extends Model {
         }, {
             key: 'vehicles',
             model: Vehicle,
-            hasMany: true,
+            // hasMany: true,
         }, {
             key: 'starships',
             model: StarShip,
@@ -26,9 +26,26 @@ class Person extends Model {
         },
     ]
 
-    constructor(properties, targetClass=Person) {
-        super(properties);
-        this.build(targetClass, properties);
+    static async build(properties, key=null) {
+        const p = new Person(properties);
+        p.key = key || properties[Person.primary];
+
+        let fieldData = properties;
+        if (!properties || !Object.keys(properties).length) {
+            fieldData = await this.getItem(p.key);
+        }
+
+        Person.fields.map(async ({ key, model, hasMany, belongsTo }) => {
+            if (model && belongsTo) {
+                p[key] = await model.build({}, fieldData[key]);
+            } else if (model && hasMany) {
+                p[key] = await Promise.all(fieldData[key].map(async key => await model.build({}, key)));
+            }
+            else {
+                p[key] = fieldData[key];
+            }
+        });
+        return Promise.resolve(p);
     }
 }
 

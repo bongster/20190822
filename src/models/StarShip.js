@@ -18,9 +18,24 @@ class StarShip extends Model {
             key: 'manufacturer',
         }
     ]
-    constructor(properties, targetClass=StarShip) {
-        super(properties);
-        this.build(targetClass, properties);
+
+    static async build(properties, key=null) {
+        const p = new StarShip(properties);
+        p.key = key || properties[StarShip.primary];
+
+        let fieldData = properties;
+        if (!properties || !Object.keys(properties).length) {
+            fieldData = await this.getItem(p.key);
+        }
+
+        StarShip.fields.map(async ({ key, model, hasMany, belongsTo }) => {
+            if (model && belongsTo) {
+                p[key] = await model.build({}, fieldData[key]);
+            } else {
+                p[key] = fieldData[key];
+            }
+        });
+        return Promise.resolve(p);
     }
 }
 

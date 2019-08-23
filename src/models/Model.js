@@ -1,53 +1,8 @@
 import axios from 'axios';
 
+import Cache from './Cache';
+
 const API = 'https://swapi.co/api/';
-
-class Cache {
-    static cachedData = {};
-    static hashTable = {};
-
-    static convertSetToArray(data) {
-        if (data instanceof Set) {
-            return [...data];
-        } else {
-            return data;
-        }
-    }
-
-    static init(force = false) {
-        this.cachedData = this.cachedData || {};
-        if (force) {
-            this.cachedData[this.model_name] = new Set();
-        } else {
-            this.cachedData[this.model_name] = this.cachedData[this.model_name] || new Set();
-        }
-    }
-
-    static getItems(param) {
-        this.init();
-        const cachedRes = this.cachedData[this.model_name];
-        if (param) {
-            const res = new Set();
-            for (const i of cachedRes) {
-                if (i.name.includes(param)) {
-                    res.add(i);
-                }
-            }
-            return this.convertSetToArray(res);
-        } else {
-            return this.convertSetToArray(this.cachedData[this.model_name]);
-        }
-    }
-
-    static getItem(url) {
-        this.init();
-        return this.hashTable[url];
-    }
-
-    static reset() {
-        this.init(true);
-    }
-}
 
 class Model extends Cache {
     async buildHasMany (model, list) {
@@ -69,30 +24,30 @@ class Model extends Cache {
         const data = super.getItems(param);
         if (data.length) {
             console.log(`${this.model_name} data got from cache`);
-            return data;
+            return Promise.resolve(data);
         };
 
         const url = `${API}${this.model_name}${param ? `?search=${param}` : ''}`;
         const res = await axios.get(url);
 
-        return res.data.results.map(properties => {
-            const item = new this(properties);
+        return await Promise.all(res.data.results.map(async properties => {
+            const item = await this.build(properties);
             this.cachedData[this.model_name].add(item);
             this.hashTable[item.key] = item;
             return item;
-        });
+        }));
     }
 
     static async getItem(url) {
         const cacheData = super.getItem(url);
         if (cacheData) {
-            return cacheData;
+            return Promise.resolve(cacheData);
         }
         const res = await axios.get(url);
-        const item = new this(res.data);
+        const item = await this.build(res.data);
         this.cachedData[this.model_name].add(item);
         this.hashTable[item.key] = item;
-        return res.data;
+        return Promise.resolve(res.data);
     }
 }
 
