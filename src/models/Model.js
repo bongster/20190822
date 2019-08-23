@@ -5,7 +5,7 @@ const API = 'https://swapi.co/api/';
 class Model {
     static async getItems(param) {
         const url = `${API}${this.model_name}${param ? `?search=${param}` : ''}`;
-        const cached = Cache.get(url);
+        const cached = await Cache.get(url);
         let data;
         if (cached) {
             const parsedCache = JSON.parse(cached);
@@ -13,7 +13,7 @@ class Model {
         } else {
             const res = await axios.get(url);
             data = res.data.results;
-            Cache.set(url, JSON.stringify(res.data));
+            await Cache.set(url, JSON.stringify(res.data));
         }
 
         if (param) {
@@ -27,7 +27,7 @@ class Model {
     }
 
     static async getItem(url) {
-        const cached = Cache.get(url);
+        const cached = await Cache.get(url);
         let data;
         if (cached) {
             const parsedCache = JSON.parse(cached);
@@ -35,7 +35,7 @@ class Model {
         } else {
             const res = await axios.get(url);
             data = res.data;
-            Cache.set(url, JSON.stringify(data));
+            await Cache.set(url, JSON.stringify(data));
         }
 
         const item = this.build(data);

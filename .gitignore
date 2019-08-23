@@ -62,3 +62,7 @@ typings/
 
 # vscode config
 .vscode
+
+# cache file
+file.txt
+
