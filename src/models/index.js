@@ -1,14 +1,27 @@
-import axios from 'axios';
 import Person from './Person';
-
-const API = 'https://swapi.co/api/';
-
-const getData = async (path, param) => {
-    const url = `${API}${path}${param ? `?search=${param}`: ''}`;
-    const res = await axios.get(url);
-    return res.data.results;
-}
+import StarShip from './StarShip';
+import Vehicle from './Vehicle';
+import Planet from './Planet';
 
 export const getPerson = async (name) => {
-    return (await getData('people', name)).map(properties => new Person(properties));
+    return await Person.getItems(name);
+}
+
+export const getStarShips = async (name) => {
+    return await StarShip.getItems(name);
+}
+
+export const getPlanets = async (name) => {
+    return await Planet.getItems(name);
+}
+
+export const getVehicles = async (name) => {
+    return await Vehicle.getItems(name);
+}
+
+export default {
+    Person: Person,
+    StarShip: StarShip,
+    Planet: Planet,
+    Vehicle: Vehicle,
 }
