@@ -24,7 +24,7 @@ This project are built by Practice develop a cache and relationship database
     $ yarn start
 ```
 
-## HOw to Develop
+## How to Develop
 
 ```
     $ yarn install
@@ -44,13 +44,20 @@ This project are built by Practice develop a cache and relationship database
 - [x] Create model
 - [x] Hiding information in model instance
 - [x] Create model relationship
-- [ ] Create file base cache
-- [ ] Remove expired data in cache
+- [x] Create file base cache
+- [x] Remove expired data in cache
+
+## TODO
+- [ ] setup eslint
+- [ ] add coverage
+- [ ] add index feature at model for optimizing search (use tree datastructure got data), now use full searching when searching name
+- [ ] model getItems, getItem multiple param filter
 
 ## Models
 
 * Cache
-    > Cache model
+
+Cache model
 
     * functions
         * get(key)
@@ -63,10 +70,12 @@ This project are built by Practice develop a cache and relationship database
             > return all data in storage
 
 * MemoryStorage
-    > Memory based storage
+
+Memory based storage
 
 * FileStorage
-    > File based Storage
+
+File based Storage
 
     * attributes
         * path
@@ -105,3 +114,7 @@ This project are built by Practice develop a cache and relationship database
 * axios
 * jest
 * babel
+* nodemon
+
+## Address
+* [https://github.com/bongster/20190822](github)
